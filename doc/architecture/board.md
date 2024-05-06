@@ -1,8 +1,8 @@
-# Physical board architecture
+# Sonata Board Reference
 
 ![The Sonata Board](img/board-sonata.png)
 
-This section focusses on what needs to be physically present on the board and explicitly leaves the configuration of the FPGA and the software for later sections.
+This section focusses on what needs to be physically present on the board and explicitly leaves the configuration of the FPGA and the software for other sections.
 
 ## Configuration
 
@@ -73,3 +73,9 @@ We choose a Xilinx Artix 7 FPGA because it has a typical amount of memory for em
 ## Technical details
 
 If you want to know more details on what the actual design looks like, please have a look at [NewAE's repository of the Sonata PCB](https://github.com/newaetech/sonata-pcb).
+
+This includes the entire design sources, available currently in Altium, with a KiCad version being released shortly.
+
+## Schematic Link
+
+You can find a [direct link to the schematics](https://github.com/newaetech/sonata-pcb/blob/main/sonata-schematics-r08.pdf) for your reading pleasure.
