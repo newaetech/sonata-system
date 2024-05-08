@@ -13,6 +13,8 @@ Sonata is part of the [Sunburst Project](https://www.sunburst-project.org) funde
 
 ## Getting Started
 
+![](doc/img/sonata-full.jpeg)
+
 If you have a Sonata board, you can jump to the [Getting Started](doc/guide/getting-started.md) guide. This will walk you through plugging in the board, building example software, and programming the software. For more advanced usage, you can also [build your own FPGA bitstream]().
 
 You can also work with a simulated environment, see the simulator page. This simulates the entire soft-core in Verilator, allow you to develop both hardware (the FPGA) and software (running code) programs.

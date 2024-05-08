@@ -8,7 +8,8 @@
   - [Building Examples](doc/guide/building-examples.md)
 
 - [Developer Guide](doc/dev/developing.md)
-  - [Debugger Support]()
+  - [Debugger Support](doc/dev/sw-debug.md)
+  - [Programming Sonata Software](doc/dev/sw-programming.md)
   - [Reference Manual for Sonata Core](doc/dev/refmanual.md)
       - [Ibex](doc/ip/ibex.md)
       - [Debug module](doc/ip/dm.md)

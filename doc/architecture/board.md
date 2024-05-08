@@ -1,8 +1,8 @@
 # Sonata Board Reference
 
-![The Sonata Board](img/board-sonata.png)
+This section focusses on what needs to be physically present on the board and explicitly leaves the configuration of the FPGA and the software for other sections. The Sonata board has the features shown here:
 
-This section focusses on what needs to be physically present on the board and explicitly leaves the configuration of the FPGA and the software for other sections.
+![The Sonata Board](img/board-features.jpg)
 
 ## Configuration
 
@@ -31,6 +31,8 @@ After consultation with the community, we settled on the following list:
 - ADC
 
 ## Headers
+
+![The Sonata Board](img/board-headers.jpg)
 
 For both the 'connectable' and 'extendable' requirements, we provide a number of headers so that custom functionality can be added:
 - Raspberry Pi header

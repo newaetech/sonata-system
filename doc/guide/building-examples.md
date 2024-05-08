@@ -17,33 +17,31 @@ export CHERIOT_RTOS_SDK=/path/to/cheriot-rtos/sdk
 The following assume you have run the `source .venv/bin/activate` command in the terminal you are using, and you are
 currently at the root directory of your local `sonata-system` git repository.
 
-## Capability sanity check
+## Running the build
 
-### Building Example
+>TODO: Check that CHERI build needs above environmental variables
 
-```sh
-pushd sw/cheri/cheri_sanity
-make
-popd
+To build, run the following from the root of the directory which will build the examples:
+
+```
+cmake -B sw/cheri/build -S sw/cheri
+cmake --build sw/cheri/build
 ```
 
-This should produce XXXXXX
+The build output is put in the `sw/cheri/build` directory.
+Two files of interest are created for each target: an ELF file which has no extension and a `*.vmem` file. The
+`*.vmem` file can be used to load directly into the FPGA bitstream, described in more detail on the [Programming the Sonata]()
+page.
 
-> HINT: If you don't have the environmental variables defined, you can also pass the paths to the make command itself:
-> `make CHERIOT_LLVM_ROOT=/path/to/cheriot-llvm/bin CHERIOT_RTOS_SDK=/path/to/cheriot-rtos/sdk`
+### Loading software onto the FPGA
 
-### Programming Software
+You can load software onto the FPGA over USB (JTAG) using:
 
->TODO FINISH THIS
+```sh
+./util/mem_helper.sh load_program -e sw/cheri/build/tests/spi_test
+```
 
-There are four ways of programming the software:
+>TODO: What should the user load first?
 
-1. You can use the flash storage on the Sonata board. This does not require special tools and allows an image to come
-   online automatically at boot.
-
-2. You can use OpenOCD to program the image onto RAM and then run this image. This is typically used during development.
-
-3. You can use the CHERIoT serial bootloader. This loads the image into RAM on the CHERIoT system and then runs the image.
-
-4. You can 'splice' the software into the FPGA image. This provides a single 'bitstream' including both hardware definition and software.
-  This can be helpful for making system images that come alive as soon as possible after boot.
+There are actually four different ways of loading the program - we normally use JTAG for development, but you can also
+program it into the serial flash device on the board. See the page [Programming the Sonata Software](doc/dev/sw-programming.md)

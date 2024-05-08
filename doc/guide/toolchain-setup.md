@@ -35,20 +35,18 @@ source .venv/bin/activate
 
 To build the toolchain, you'll need:
 
-* clang
 * ninja
-* lld (llvm linker)
 * cmake
 
 On Ubuntu (including WSL), you can install them with:
 
-``sudo apt get install build-essential clang ninja-build lld cmake``
+``sudo apt get install build-essential ninja-build cmake``
 
 > HINT: You can see all the commands used to setup the test running in the
 > [CI YAML file](https://github.com/CHERIoT-Platform/llvm-project/blob/cheriot/.cirrus.yml). This provides a set of commands that
 > is tested on each commit, in case you are having trouble building anything and want to see the expected output.
 
-Then build the toolchain with (again be sure this is in the `.venv` terminal):
+Build the toolchain with (again be sure this is in the `.venv` terminal):
 
 ```sh
 git clone --depth 1 https://github.com/CHERIoT-Platform/llvm-project cheriot-llvm
