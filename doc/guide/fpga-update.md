@@ -13,7 +13,7 @@ process is much slower than a software compile, so adds delay until you can play
 
 When the Sonata board is plugged in, it loads one of three bitstreams. This is selected by the switch below the USB port labeled `Bitstream`:
 
-> TODO IMAGE WITH ARROW
+![](img/sonata-selectbs.jpeg)
 
 The LEDs besides the switch show the current image selected as well for confirmation. We recommend using Slot 2 (the middle setting), leaving Slot 1 as the test image we shipped.
 
@@ -28,21 +28,25 @@ to overwrite any of the slots, the default image can easily be copied back if yo
 
 To program the Sonata bitstream:
 
-1. Download `THATSTHEGOODSTUFF.bit` from THEBESTURL.COM/THATSTHEGOODSTUFF.BIT
+1. Download `sonata_top.bit` from THEBESTURL.COM/sonata_top.bit
 2. Select slot 2 using switch SW7 (`Bitstream`)
 3. Plug in Sonata board. You should see a SONATA drive (see troubleshooting section if unsure).
 4. Drag the updated `.bit` file and wait for the copy to complete (on Linux note the copy command may return immediately, so you need to wait until it's done.)
 5. The board should automatically restart once the image is copied over. You should see the `FPGA Config` LED come on:
 
-> TODO - SHOW THE LEDs
+![](img/sonata-fpgaconfig.jpeg)
 
-This indicates the FPGA configuration succeeded. You should also see the `Ibex Boot` LED come on indicating the processor core has booted.
+This indicates the FPGA configuration succeeded. This LED should stay on. You should also see the `Ibex Boot` LED come on indicating the processor core has booted.
+
+> The `FPGA Config` LED reflects the state of the FPGA `DONE` pin. If this LED is not on your board will not work, as there is no logic (core)
+> loaded, or it has become corrupted. This is true even if you are not building Sonata designs but using the board as a general-purpose FPGA
+> board. See troubleshooting below if this LED does not come on, or appears to only come on briefly.
 
 Here is the commands you'd need to do all of that, assuming Sonata was already plugged in and has been mounted at `/media/sonata`
 
 ```sh
-wget THEBESTURL.COM/THATSTHEGOODSTUFF.BIT
-cp THATSTHEGOODSTUFF.bit /media/sonata/.
+wget THEBESTURL.COM/sonata_top.bit
+cp sonata_top.bit /media/sonata/.
 ```
 
 Many Linux desktop distributions will automount if you open the drive via the graphical interface, so you may find it easier to do this from your Linux desktop,
@@ -96,17 +100,14 @@ The Sonata board takes a fair amount of power (>500mA) from the USB interface, a
 If for some reason the mass storage programming isn't working, you can also use the built-in FTDI JTAG programming. This requires the setup described in [FPGA Programming](../dev/fpga-programming.md) to build openFPGALoader. Once built, you simply run:
 
 ```sh
-openFPGALoader -c ft4232 GOODSTUFF.bit
+openFPGALoader -c ft4232 sonata_top.bit
 ```
 
 Note this requires the `udev` setup described in [FPGA Programming](../dev/fpga-programming.md). If you are lazy you can just run the command as root instead (not recommended, but can be helpful for troubleshooting on VMs):
 
 ```sh
-sudo openFPGALoader -c ft4232 GOODSTUFF.bit
+sudo openFPGALoader -c ft4232 sonata_top.bit
 ```
-
-> TODO GOODSTUFF.bit->realname.bit
-
 You can also use the flag XXXX which will print detailed information about the configuration status with a recent version of openFPGALoader. This is especially helpful if you are trying to understand why the `DONE` LED is not coming on:
 
 > TODO check the new setting to read that flag, copy some demo text here
